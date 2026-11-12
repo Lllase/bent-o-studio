@@ -2,3 +2,5 @@
 extracted/
 node_modules/
 .vercel/
+
+.vercel
