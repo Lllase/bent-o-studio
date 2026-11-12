@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BentoStudio</title>
+    <meta name="description" content="Generate, customize and export bento-grid layouts that mix images and motion." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="canvas" data-canvas aria-label="BentoStudio canvas">
+      <div id="glow"></div>
+
+      <div id="stage" data-stage>
+        <div id="inner"></div>
+        <div id="frameDeco"></div>
+      </div>
+
+      <header id="topbar">
+        <div class="tb-left">
+          <div class="logo">
+            <span class="logo-glyph"><i class="a"></i><i></i><i></i></span><span class="wordmark">BentoStudio</span>
+          </div>
+          <input id="project" value="Untitled bento" spellcheck="false" aria-label="Project name" />
+        </div>
+        <div class="tb-mid">
+          <div class="seg" id="vpSeg" role="group" aria-label="Viewport"></div>
+          <div class="seg mono" id="aspSeg" role="group" aria-label="Aspect ratio"></div>
+        </div>
+        <div class="tb-right">
+          <button class="btn ghost" data-act="shuffle">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+              <rect x="2" y="2" width="12" height="12" rx="3" />
+              <circle cx="5.5" cy="5.5" r=".9" fill="currentColor" />
+              <circle cx="10.5" cy="5.5" r=".9" fill="currentColor" />
+              <circle cx="8" cy="8" r=".9" fill="currentColor" />
+              <circle cx="5.5" cy="10.5" r=".9" fill="currentColor" />
+              <circle cx="10.5" cy="10.5" r=".9" fill="currentColor" /></svg
+            >Shuffle
+          </button>
+          <button class="btn ghost" data-act="reset">Reset</button>
+          <button class="btn primary" data-act="export">Export</button>
+        </div>
+      </header>
+
+      <aside id="left" class="panel" aria-label="Layout controls">
+        <div id="leftBody"></div>
+        <div class="hint-foot">
+          Drag the seams between cells to resize them. Drag one cell onto another to swap. With a keyboard: Tab to a cell, Enter
+          to select it, and arrow keys on a seam to resize.
+        </div>
+      </aside>
+      <aside id="insp" class="panel" aria-label="Cell inspector"></aside>
+
+      <div id="toolbar" role="status" aria-label="Canvas status"></div>
+    </main>
+    <div id="live" class="sr" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="exportOverlay">
+      <div id="exportPanel" role="dialog" aria-modal="true" aria-labelledby="exTitle" tabindex="-1">
+        <div class="ex-head">
+          <div>
+            <div class="ex-title" id="exTitle">Export</div>
+            <div class="ex-meta" id="exMeta"></div>
+          </div>
+          <div class="seg" id="exTabs" role="group" aria-label="Export format"></div>
+          <button class="x" data-act="closeExport" aria-label="Close">✕</button>
+        </div>
+        <pre id="exCode" tabindex="0" aria-label="Generated code"></pre>
+        <div id="exMedia" hidden></div>
+        <div class="ex-foot">
+          <span class="ex-note" id="exNote"
+            >Media paths point to <code>media/</code>. Canvas and export share the same 24×24 grid.</span
+          >
+          <span class="ex-btns"
+            ><button class="btn ghost" data-act="download" id="exDl">Download</button
+            ><button class="btn primary" data-act="copy" id="exCopy">Copy code</button></span
+          >
+        </div>
+      </div>
+    </div>
+
+    <input type="file" id="file" multiple hidden accept="image/*,video/*,.json,.gif,.mp4,.webm,.mov,.m4v,.svg,.avif" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
